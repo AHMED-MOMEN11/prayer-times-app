@@ -1,0 +1,242 @@
+/* ==========================================
+   1. Root Variables (الباليتة الجديدة)
+   ========================================== */
+:root {
+    /* Background Colors */
+    --bg-card-navy: #152c42;
+    --bg-card-navy-rgb: 21, 44, 66;
+    --bg-dark-indigo: #0b1a29;
+    --bg-dark-indigo-rgb: 11, 26, 41;
+
+    /* Accent Colors */
+    --accent-gold-amber: #e6ab53;
+    --accent-gold-amber-rgb: 230, 171, 83;
+    --accent-cobalt-blue: #3b719f;
+    --accent-cobalt-blue-rgb: 59, 113, 159;
+
+    /* Typography Colors */
+    --text-primary-ivory: #fcfaf2;
+    --text-secondary-sand: #e8ded1;
+    --text-muted-slate: #9bb3c7;
+}
+
+/* ==========================================
+   2. Reset & Fullscreen Setup
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    background: url('./assets/wallpaperflare.com_wallpaper.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-secondary-sand);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Overlay dark shade for maximum text readability */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--bg-dark-indigo-rgb), 0.35);
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+/* ==========================================
+   3. Main Container Layout
+   ========================================== */
+.app-container {
+    width: 100%;
+    max-width: 950px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+}
+
+/* Button Location */
+.btn-location {
+    background: rgba(var(--bg-card-navy-rgb), 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--accent-cobalt-blue);
+    color: var(--text-primary-ivory);
+    padding: 0.5rem 1.2rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-location:hover {
+    border-color: var(--accent-gold-amber);
+    color: var(--accent-gold-amber);
+}
+
+/* Header Dates */
+.header-dates .date-hijri {
+    font-size: 2.4rem;
+    color: var(--text-primary-ivory);
+    margin-bottom: 0.2rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.header-dates .date-gregorian {
+    font-size: 1.15rem;
+    color: var(--text-muted-slate);
+}
+
+/* ==========================================
+   4. Next Prayer Highlight Card
+   ========================================== */
+.next-prayer-card {
+    background: rgba(var(--bg-card-navy-rgb), 0.82);
+    backdrop-filter: blur(12px);
+    border: 1.5px solid var(--accent-gold-amber);
+    padding: 2rem 3.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(var(--accent-gold-amber-rgb), 0.2);
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+}
+
+.badge {
+    background: var(--accent-gold-amber);
+    color: var(--bg-dark-indigo);
+    font-weight: 700;
+    padding: 0.2rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.next-prayer-title {
+    font-size: 2.5rem;
+    color: var(--accent-gold-amber);
+    margin: 0.4rem 0;
+}
+
+.countdown {
+    font-size: 1.3rem;
+    color: var(--text-primary-ivory);
+    font-weight: 500;
+}
+
+.prayer-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 900px;
+    flex-wrap: wrap;
+}
+
+.prayer-card {
+    background: rgba(var(--bg-card-navy-rgb), 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(var(--accent-cobalt-blue-rgb), 0.4);
+    border-radius: 14px;
+    padding: 1.2rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+    background: rgba(21, 44, 66, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(59, 113, 159, 0.4);
+    border-radius: 12px;
+    padding: 1rem 0.5rem;
+    text-align: center;
+}
+
+.prayer-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-gold-amber);
+}
+
+.prayer-card.active {
+    border: 2px solid var(--accent-gold-amber);
+    background: rgba(var(--bg-card-navy-rgb), 0.9);
+    box-shadow: 0 0 15px rgba(var(--accent-gold-amber-rgb), 0.25);
+}
+
+.prayer-name {
+    font-size: 1rem;
+    color: var(--text-muted-slate);
+}
+
+.prayer-card.active .prayer-name {
+    color: var(--text-primary-ivory);
+}
+
+.prayer-time {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-secondary-sand);
+}
+
+.prayer-card.active .prayer-time {
+    color: var(--accent-gold-amber);
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .prayer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .next-prayer-card {
+        padding: 1.5rem 1.5rem;
+    }
+}
+
+/* دعم اتجاه اللغة الإنجليزية */
+[dir="ltr"] {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* دعم اتجاه اللغة العربية */
+[dir="rtl"] {
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* زر تغيير اللغة */
+.btn-lang {
+  background: rgba(var(--bg-card-navy-rgb), 0.7);
+  border: 1px solid var(--accent-cobalt-blue);
+  color: var(--text-primary-ivory);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-lang:hover {
+  border-color: var(--accent-gold-amber);
+  color: var(--accent-gold-amber);
+}
